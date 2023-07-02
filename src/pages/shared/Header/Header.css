@@ -1,0 +1,11 @@
+.apply{
+    background: linear-gradient(90deg, #0a5c11 0%, #8af55f 100%);
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid rgb(193, 241, 61);
+    color: #ffffff;
+}
+.apply:hover{
+    cursor: pointer;
+    background: linear-gradient(90deg, #04f872 0%, #31ee20 100%);
+}
