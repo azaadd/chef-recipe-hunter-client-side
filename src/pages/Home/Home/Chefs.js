@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Chef from './Chef';
+import Categories from './Categories';
+import Special from './Special';
 
 
 const Chefs = () => {
@@ -16,18 +18,19 @@ const Chefs = () => {
 
 
     return (
-        <div className='container mt-5'>
+        <div className='mt-5'>
             <div className='pt-5 pb-4'>
                 <h2 className='fw-bold text-center text-success'>Our <span className='text-danger'>Magician</span> Chefs</h2>
             </div>
 
-            <div className="row row-cols-1 row-cols-md-3 g-4">
+            <div className="row row-cols-1 row-cols-md-3 g-3">
                 {
                     chefs.map(chef => <Chef key={chef.id} chef={chef}></Chef>)
                 }
             </div>
 
-
+            <Categories></Categories>
+            <Special></Special>
         </div>
     );
 };

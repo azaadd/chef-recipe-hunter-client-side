@@ -9,3 +9,10 @@
     cursor: pointer;
     background: linear-gradient(90deg, #04f872 0%, #31ee20 100%);
 }
+
+.card-pic{
+    border-radius: 5px;
+}
+.category-img{
+    border-radius: 50%;
+}
