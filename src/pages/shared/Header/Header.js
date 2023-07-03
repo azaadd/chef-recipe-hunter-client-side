@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
 const Header = () => {
     return (
-        <div className='mt-2 mb-4'>
+        <div className='mt-2 mb-4 sticky-top'>
             <Navbar collapseOnSelect expand="lg" className="bg-white">
                 <Container>
                     <Navbar.Brand className='fw-bold fs-1' href="#home"><span className='text-success'>Ban</span><span className='text-danger'>gla</span><span className='text-success'>Food</span></Navbar.Brand>
