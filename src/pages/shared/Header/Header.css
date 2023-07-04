@@ -34,3 +34,17 @@
 
 
 /* footer section style */
+.foot-icon-con{
+    background: #d2ecdf;
+}
+.social-icon{
+    width: 25px;
+    height: 25px;
+    margin: 8px;
+}
+.fainsta{
+    color: #ff0097;
+}
+.fawhats{
+    color: #00e676;
+}
