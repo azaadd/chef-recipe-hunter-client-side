@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chef from './Chef';
 import Categories from './Categories';
 import Special from './Special';
+import Footer from '../../shared/Footer/Footer';
 
 
 const Chefs = () => {
