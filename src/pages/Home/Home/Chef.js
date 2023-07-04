@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../shared/Header/Header.css';
+import { Link } from 'react-router-dom';
 
 
 const Chef = ({chef}) => {
@@ -27,7 +28,7 @@ const Chef = ({chef}) => {
                                 <p className="card-text">{years_of_experience} year experience</p>
                                 <p className="card-text">Total Recipes: {number_of_recipes}</p>
                                 <p className="card-text">Total Likes: {likes}</p>
-                                <button className='apply'>View Recipes</button>
+                                <Link to={`/recipes/${id}`}><button className='apply'>View Recipes</button></Link>
                             </div>
                     </div>
                 </div>

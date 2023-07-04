@@ -76,7 +76,7 @@ const Footer = () => {
                             <div className="px-md-5 col py-4 py-md-0">
                                 <h5 className="text-danger fw-bold mb-4">Contact</h5>
                                 <p>10 Mirpur Rd, Dhanmondi 32, Dhaka, Bangladesh.</p>
-                                <p>666 888 0000</p>
+                                <p>999 550 0000</p>
                                 <p>info@gmail.com</p>
                             </div>
                         </div>
