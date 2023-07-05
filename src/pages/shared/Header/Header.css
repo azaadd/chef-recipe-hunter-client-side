@@ -58,3 +58,8 @@
 }
 
 
+.profile-image:hover{
+    cursor: pointer;
+    transition: all ease 0.10s;
+}
+

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
 

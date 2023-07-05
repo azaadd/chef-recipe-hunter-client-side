@@ -5,7 +5,15 @@ import { AuthContext } from '../../../providers/AuthProvider';
 
 const Header = () => {
 
-    const {user} = useContext(AuthContext);
+    const {user, logOut} = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+        .then()
+        .catch(error => {
+            console.log(error)
+        })
+    }
 
     return (
         <div className='mt-2 mb-4 sticky-top'>
@@ -18,15 +26,22 @@ const Header = () => {
                             <Link className='text-decoration-none text-secondary' to="/">Home</Link>
                             <Link className='ms-3 text-decoration-none text-secondary' to="/blog">Blog</Link>
                         </Nav>
-                        <Nav>
-                            { user && <Link href="#deets" className='text-decoration-none text-secondary me-3'><img src=" " alt="" />{user.displayName}</Link>}
+                        
                             { user ? 
-                            <Button className='apply border-0 rounded-3 px-4 fw-semibold text-white'>Logout</Button> :
+                            <>
+                            
+                            <img src={user.photoURL} className='rounded-5 profile-image' 
+                            alt="" 
+                            title={user.displayName} 
+                            style={{ height: "50px", width: "50px" }}
+                            />
+                            <Button onClick={handleLogout} className='apply border-0 rounded-3 px-4 fw-semibold text-white ms-3'>Logout</Button>
+                            </>:
                             <Link to="/login">
-                                <Button className='apply border-0 rounded-3 px-4 fw-semibold text-white'>Login</Button>
+                                <Button className='apply border-0 rounded-3 px-4 fw-semibold text-white ms-3'>Login</Button>
                             </Link>
                             }
-                        </Nav>
+                        
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
