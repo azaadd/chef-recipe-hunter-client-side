@@ -5,6 +5,8 @@ import Banners from "../pages/Home/Home/Banners";
 import Chefs from "../pages/Home/Home/Chefs";
 import Blog from "../pages/blog/Blog";
 import Recipes from "../pages/recipe/Recipes";
+import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
 
 
 
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
                 path: '/recipes/:id',
                 element: <Recipes></Recipes>,
                 loader: ({params}) => fetch(`http://localhost:5000/chefs/${params.id}`)
+            },
+            {
+                path:'/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }

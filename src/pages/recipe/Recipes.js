@@ -38,7 +38,7 @@ const Recipes = () => {
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-3 g-2 mt-5">
+            <div className="row row-cols-1 row-cols-md-3 g-2 mt-5">
             {
                 recipes.map(recipe => <Recipe key={recipe.recipe_id} recipe={recipe}></Recipe>)
             }
