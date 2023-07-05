@@ -23,7 +23,7 @@ const Login = () => {
                 <Button className='w-100 apply fw-semibold' variant="primary" type="submit">
                     Login
                 </Button>
-                <p className='mt-2'>Don't have an account? <Link to='/register'>Register</Link></p>
+                <p className='mt-2'>Don't have any account? <Link to='/register'>Register</Link></p>
             </Form>
 
             <div>
