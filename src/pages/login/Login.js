@@ -6,7 +6,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
 
-    const {signInUser} = useContext(AuthContext);
+    const {signInUser, signInWithGoogle} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     console.log('login page location',location);
@@ -25,6 +25,18 @@ const Login = () => {
             const loggedInUser = result.user;
             console.log(loggedInUser);
             form.reset();
+            navigate(from, {replace: true})
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
             navigate(from, {replace: true})
         })
         .catch(error => {
@@ -56,7 +68,7 @@ const Login = () => {
             </Form>
 
             <div>
-                <Button className='w-100 fw-semibold mt-3' variant="outline-primary" type="submit">
+                <Button onClick={handleGoogleSignIn} className='w-100 fw-semibold mt-3' variant="outline-primary" type="submit">
                 <FaGoogle/> Sign-in With Google
                 </Button>
                 <Button className='w-100 fw-semibold mt-3' variant="outline-secondary" type="submit">

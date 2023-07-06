@@ -9,9 +9,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
     console.log(location);
     if (loading) {
-        return <div className='container mx-auto w-25'>
-                <Spinner animation="border" variant="secondary" className='my-3 m-5'/>
-            </div>
+        return ;
     }
 
 
