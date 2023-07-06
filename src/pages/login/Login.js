@@ -6,7 +6,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
 
-    const {signInUser, signInWithGoogle} = useContext(AuthContext);
+    const {signInUser, signInWithGoogle,signInWithGithub} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     console.log('login page location',location);
@@ -44,6 +44,18 @@ const Login = () => {
         })
     }
 
+    const handleGithubSignIn = () => {
+        signInWithGithub()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            navigate(from, {replace: true})
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
 
     return (
         <div className='container w-50 mx-auto'>
@@ -71,7 +83,7 @@ const Login = () => {
                 <Button onClick={handleGoogleSignIn} className='w-100 fw-semibold mt-3' variant="outline-primary" type="submit">
                 <FaGoogle/> Sign-in With Google
                 </Button>
-                <Button className='w-100 fw-semibold mt-3' variant="outline-secondary" type="submit">
+                <Button onClick={handleGithubSignIn} className='w-100 fw-semibold mt-3' variant="outline-secondary" type="submit">
                 <FaGithub/> Sign-in With GitHub
                 </Button>
             </div>
