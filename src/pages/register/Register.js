@@ -1,19 +1,24 @@
-import React, { useContext } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Button, Col, Form, Row, Toast } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    
 
-    const {createUser} = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
-    console.log('login page location',location);
+    console.log('login page location', location);
     const from = location.state?.from?.pathname || '/login'
 
-    const handleRegister = event =>{
+    const handleRegister = event => {
         event.preventDefault();
+        setSuccess('');
+
         const form = event.target;
         const name = form.name.value;
         const photo = form.photo.value;
@@ -21,33 +26,44 @@ const Register = () => {
         const password = form.password.value;
         console.log(name, photo, email, password)
 
-        createUser(email, password)
-        .then(result => {
-            const createdUser = result.user;
-            console.log(createdUser);
-            form.reset();
-            navigate(from, {replace: true})
-            userProfileInfo(createdUser, name, photo);
+        
+        if(password.length<6){
+            setError('Please input password at least 6 characters!')
+            return;
+        }
 
-        })
-        .catch(error => {
-            console.log(error);
-        })
+
+        createUser(email, password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+                form.reset();
+                navigate(from, { replace: true })
+                userProfileInfo(createdUser, name, photo);
+                setError('');
+                setSuccess('You have been login successfully!')
+
+            })
+            .catch(error => {
+                console.log(error.message);
+                setError(error.message);
+
+            })
 
         const userProfileInfo = (user, name, photo) => {
             updateProfile(user, {
                 displayName: name,
                 photoURL: photo,
             })
-            .then( () => {
-                console.log("user name and photo url updated");
-            })
-            .catch(error => {
-                console.log(error);
-            })
+                .then(() => {
+                    console.log("user name and photo url updated");
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
 
-        
+
 
     }
 
@@ -75,9 +91,14 @@ const Register = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" name='accept' label="Accept terms & conditions" />
                 </Form.Group>
+
+                <p className='text-danger my-3 fs-5 fw-bold'>{error}</p>
+                <p className='text-success my-3 fs-5 fw-bold'>{success}</p>
+
                 <Button className='w-100 apply fw-semibold' variant="primary" type="submit">
                     Register
                 </Button>
+
                 <p className='mt-2'>Already have an account? <Link to='/login'>Login</Link></p>
             </Form>
 

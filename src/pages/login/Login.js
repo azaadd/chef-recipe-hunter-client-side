@@ -1,19 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
-    const {signInUser, signInWithGoogle,signInWithGithub} = useContext(AuthContext);
+    const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
-    console.log('login page location',location);
+    console.log('login page location', location);
     const from = location.state?.from?.pathname || '/'
 
     const handleLogin = event => {
         event.preventDefault();
+        setSuccess('');
 
         const form = event.target;
         const email = form.email.value;
@@ -21,39 +24,42 @@ const Login = () => {
         console.log(email, password)
 
         signInUser(email, password)
-        .then(result => {
-            const loggedInUser = result.user;
-            console.log(loggedInUser);
-            form.reset();
-            navigate(from, {replace: true})
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                form.reset();
+                navigate(from, { replace: true })
+                setError('');
+                setSuccess('You have been login successfully!')
+            })
+            .catch(error => {
+                console.log(error.message);
+                setError(error.message);
+            })
     }
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            navigate(from, {replace: true})
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const handleGithubSignIn = () => {
         signInWithGithub()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            navigate(from, {replace: true})
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 
@@ -73,6 +79,10 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Remember me" />
                 </Form.Group>
+
+                <p className='text-danger my-3 fs-5 fw-bold'>{error}</p>
+                <p className='text-success my-3 fs-5 fw-bold'>{success}</p>
+
                 <Button className='w-100 apply fw-semibold' variant="primary" type="submit">
                     Login
                 </Button>
@@ -81,10 +91,10 @@ const Login = () => {
 
             <div>
                 <Button onClick={handleGoogleSignIn} className='w-100 fw-semibold mt-3' variant="outline-primary" type="submit">
-                <FaGoogle/> Sign-in With Google
+                    <FaGoogle /> Sign-in With Google
                 </Button>
                 <Button onClick={handleGithubSignIn} className='w-100 fw-semibold mt-3' variant="outline-secondary" type="submit">
-                <FaGithub/> Sign-in With GitHub
+                    <FaGithub /> Sign-in With GitHub
                 </Button>
             </div>
 
