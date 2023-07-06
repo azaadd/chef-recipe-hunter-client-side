@@ -8,13 +8,16 @@ import Recipes from "../pages/recipe/Recipes";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../pages/Error-page";
 
 
 
 const router = createBrowserRouter([
     {
         path: '/',
+        
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
