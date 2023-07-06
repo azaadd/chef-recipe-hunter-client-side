@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Chef from './Chef';
 import Categories from './Categories';
 import Special from './Special';
 import Footer from '../../shared/Footer/Footer';
+import { AuthContext } from '../../../providers/AuthProvider';
+import { Spinner } from 'react-bootstrap';
 
 
 const Chefs = () => {
+    const {loading} = useContext(AuthContext);
     const [chefs, setChefs] = useState([]);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/chefs')
@@ -25,8 +29,13 @@ const Chefs = () => {
             </div>
 
             <div className="row row-cols-1 row-cols-md-3 g-3">
-                {
+                { loading ? <>
+                    <div className='container mx-auto w-25'>
+                        <Spinner animation="border" variant="secondary" className='my-3 m-5'/>
+                    </div></>
+                :<>{
                     chefs.map(chef => <Chef key={chef.id} chef={chef}></Chef>)
+                }</>
                 }
             </div>
 
