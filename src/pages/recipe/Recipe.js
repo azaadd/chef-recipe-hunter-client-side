@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipe = ({ recipe }) => {
+    const [favorite, setFavorite] = useState(false);
     const { food_img, recipe_name, ingredients, cooking_method, rating } = recipe;
+
+    const notify = () => {
+        const toastMessage = toast.success("Successfully added!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            pauseOnHover: false,
+            draggable: false,
+        });
+        if (toastMessage) {
+            return setFavorite(true);
+        }
+    }
+
+
     return (
         <div>
 
@@ -21,23 +39,27 @@ const Recipe = ({ recipe }) => {
                         <p className="card-text mb-5">{cooking_method}</p>
 
 
-                        
-                            <div className="text-muted d-flex align-items-center position-absolute mb-3 bottom-0">
-                                <div className='flex-grow-1 align-items-center'>
-                                    <Rating
-                                        placeholderRating={rating}
 
-                                        emptySymbol={<FaRegStar className='fs-4'></FaRegStar>}
-                                        placeholderSymbol={<FaStar className='text-warning fs-4'></FaStar>}
-                                        fullSymbol={<FaStar className='text-warning fs-4'></FaStar>}
-                                    ></Rating>
-                                    <span className='fs-5 bg-primary-subtle px-3 rounded-5'>{rating}</span>
-                                </div>
-                                <div>
-                                    <button className='btn btn-danger ms-5'>Favorite</button>
-                                </div>
+                        <div className="text-muted d-flex align-items-center position-absolute mb-3 bottom-0">
+                            <div className='flex-grow-1 align-items-center'>
+                                <Rating
+                                    placeholderRating={rating}
+
+                                    emptySymbol={<FaRegStar className='fs-4'></FaRegStar>}
+                                    placeholderSymbol={<FaStar className='text-warning fs-4'></FaStar>}
+                                    fullSymbol={<FaStar className='text-warning fs-4'></FaStar>}
+                                ></Rating>
+                                <span className='fs-5 bg-primary-subtle px-3 rounded-5'>{rating}</span>
                             </div>
-                        
+                            <div>
+                                <button
+                                    onClick={notify}
+                                    disabled={favorite}
+                                    className='btn btn-danger ms-5'>Favorite</button>
+                                <ToastContainer />
+                            </div>
+                        </div>
+
 
 
                     </div>
