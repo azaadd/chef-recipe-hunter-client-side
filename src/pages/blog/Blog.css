@@ -1,0 +1,15 @@
+.question-wrap{
+    
+    margin: 50px auto;
+}
+.question{
+    background-color: #349734;
+    padding: 10px;
+    border-radius: 3px;
+    color: #ffffff;
+}
+.answer{
+    text-decoration: underline 2px #9fff05;
+    font-weight: bold;
+    font-size: 18px;
+}

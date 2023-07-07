@@ -9,7 +9,7 @@ const Recipe = ({ recipe }) => {
     const { food_img, recipe_name, ingredients, cooking_method, rating } = recipe;
 
     const notify = () => {
-        const toastMessage = toast.success("Successfully added!", {
+        const toastMessage = toast.success("The Recipe is my favorite!", {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: true,
