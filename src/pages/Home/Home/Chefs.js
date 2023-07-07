@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import Chef from './Chef';
 import Categories from './Categories';
 import Special from './Special';
-import Footer from '../../shared/Footer/Footer';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Spinner } from 'react-bootstrap';
 
