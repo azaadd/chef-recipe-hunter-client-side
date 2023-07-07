@@ -1,5 +1,5 @@
 <h1 align="center">BanglaFood</h1>
-<p align="center">This is my assignment 10.</p>
+<p align="center">This is my chef-recipe-hunter-client-site.</p>
 
 # Some Features of this website:-
 
