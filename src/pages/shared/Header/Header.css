@@ -63,3 +63,12 @@
     transition: all ease 0.10s;
 }
 
+/****************
+/// media query for mobile device
+****************/
+@media only screen and (max-width: 576px){
+    .img-banner{
+        width: 80%;
+    }
+    
+}
