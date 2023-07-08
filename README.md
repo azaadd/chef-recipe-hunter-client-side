@@ -22,7 +22,7 @@
 * Also can see login-with google and github account
 * There is some validation in register page like password must be at least six character long and email and password field can't be empty.
 
-### Live Site Link
-##:
+### Live Client Site Link
+##: https://chef-recipe-hunter-clien-81850.web.app/
 
 

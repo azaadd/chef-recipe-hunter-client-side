@@ -12,7 +12,7 @@ const Chefs = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/chefs')
+        fetch('https://chef-recipe-hunter-server-side-azaadd.vercel.app/chefs')
             .then(res => res.json())
             .then(data => setChefs(data))
             .catch(error => {
